@@ -7,6 +7,7 @@ ALTER TABLE bookings ENABLE ROW LEVEL SECURITY;
 ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
 ALTER TABLE payments ENABLE ROW LEVEL SECURITY;
 ALTER TABLE audit_logs ENABLE ROW LEVEL SECURITY;
+ALTER TABLE media ENABLE ROW LEVEL SECURITY;
 
 -- ============================================
 -- PROFILES POLICIES
@@ -275,10 +276,10 @@ CREATE POLICY "Admins can view all audit logs"
     )
   );
 
--- Only system can insert audit logs (via triggers)
-CREATE POLICY "System can insert audit logs"
+-- Only authenticated users can insert audit logs (via triggers)
+CREATE POLICY "Authenticated users can insert audit logs"
   ON audit_logs FOR INSERT
-  WITH CHECK (true);
+  WITH CHECK (auth.uid() IS NOT NULL);
 
 -- Audit logs are immutable (no updates or deletes)
 
