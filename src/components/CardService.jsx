@@ -22,7 +22,7 @@ export default function CardService({ detailer }) {
         <span className="text-gray-400 text-sm">• {detailer.location} • {detailer.distance}</span>
       </div>
       
-      <p className="text-gloss-yellow font-bold">Desde {detailer.priceFrom}</p>
+      <p className="text-gloss-yellow font-bold font-mono">{detailer.priceFrom}</p>
     </div>
   )
 }

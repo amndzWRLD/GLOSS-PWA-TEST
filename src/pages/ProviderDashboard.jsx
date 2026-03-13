@@ -21,7 +21,7 @@ export default function ProviderDashboard() {
 
         <div className="bg-gradient-to-br from-green-900/30 to-green-700/20 border border-green-700/50 rounded-2xl p-6 mb-6">
           <p className="text-sm text-gray-400 mb-2 uppercase tracking-wider">Ingresos este mes</p>
-          <h2 className="text-4xl font-bold text-gloss-yellow mb-2">₡248,000</h2>
+          <h2 className="text-4xl font-bold text-gloss-yellow font-mono mb-2">₡248,000</h2>
           <p className="text-sm text-green-400">↑ 18% vs mes anterior</p>
         </div>
 

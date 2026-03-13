@@ -64,9 +64,9 @@ export default function ServiceDetail() {
               <div key={idx} className="bg-dark-card border border-dark-border rounded-xl p-4">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="font-bold">{service.name}</h3>
-                  <span className="text-gloss-yellow font-bold">{service.price}</span>
+                  <span className="text-gloss-yellow font-bold font-mono">{service.price}</span>
                 </div>
-                <p className="text-sm text-gray-400">⏱ {service.duration}</p>
+                <p className="text-sm text-gray-400 font-mono">⏱ {service.duration}</p>
               </div>
             ))}
           </div>

@@ -14,7 +14,9 @@ export default {
         'dark-border': '#2a2a2a'
       },
       fontFamily: {
-        'display': ['Inter', 'system-ui', 'sans-serif']
+        'display': ['Syne', 'system-ui', 'sans-serif'],
+        'body': ['DM Sans', 'system-ui', 'sans-serif'],
+        'mono': ['JetBrains Mono', 'monospace']
       }
     }
   },
