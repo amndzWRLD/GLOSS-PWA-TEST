@@ -1,16 +1,6 @@
-// Mock Supabase client for frontend preview
-export const supabase = {
-  auth: {
-    getSession: async () => ({ data: { session: null }, error: null }),
-    signInWithPassword: async ({ email, password }) => ({ 
-      data: { user: { email } }, 
-      error: null 
-    }),
-    signUp: async ({ email, password }) => ({ 
-      data: { user: { email } }, 
-      error: null 
-    }),
-    signOut: async () => ({ error: null }),
-    onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } })
-  }
-}
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)

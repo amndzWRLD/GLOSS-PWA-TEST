@@ -6,16 +6,21 @@ import Button from '../components/Button'
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
   const { signIn } = useAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    try {
-      await signIn(email, password)
+    setError('')
+    setLoading(true)
+    const { error } = await signIn(email, password)
+    setLoading(false)
+    if (error) {
+      setError(error.message)
+    } else {
       navigate('/home')
-    } catch (error) {
-      console.error('Login error:', error)
     }
   }
 
@@ -41,9 +46,10 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           className="w-full bg-dark-card border border-dark-border rounded-xl px-4 py-3 focus:outline-none focus:border-gloss-yellow"
         />
-        <Button type="submit" className="w-full">
-          INICIAR SESIÓN
+        <Button type="submit" className="w-full" disabled={loading}>
+          {loading ? 'ENTRANDO...' : 'INICIAR SESIÓN'}
         </Button>
+        {error && <p className="text-red-400 text-sm text-center">{error}</p>}
         <p className="text-center text-gray-400 text-sm">
           ¿No tienes cuenta?{' '}
           <button onClick={() => navigate('/signup')} className="text-gloss-yellow">
