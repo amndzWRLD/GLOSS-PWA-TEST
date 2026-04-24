@@ -1,15 +1,16 @@
-# GLOSS - Car Detailing Marketplace PWA
+# 🚗 GLOSS - Marketplace PWA de Detallado de Autos
 
-## Setup
+## ⚙️ Configuración del Proyecto
 
-1. Install dependencies:
+### 1. Instalar dependencias
 ```bash
 npm install
 ```
 
-2. Create `.env` file from `.env.example` and add your Supabase credentials
+### 2. Variables de entorno
+Crea el archivo `.env` a partir de `.env.example` y agregar las credenciales de Supabase.
 
-3. Run development server:
+### 3. Ejecutar entorno de desarrollo
 ```bash
 npm run dev
 ```
@@ -17,25 +18,26 @@ npm run dev
 
 # 🌐 GLOSS
 
-GLOSS is a modern, security-first Progressive Web App (PWA) built with a Supabase-native architecture.  
-It is designed as a scalable SaaS foundation with authentication, protected routing, and modular future systems.
+GLOSS es una Progressive Web App (PWA) moderna, enfocada en seguridad y construida sobre una arquitectura nativa de Supabase.  
+Está diseñada como una base Software-as-a-Service escalable con autenticación, rutas protegidas y módulos extensibles.
 
 ---
 
-## 🚀 CURRENT STATE
+## 🚀 Estado Actual
 
-GLOSS is currently in active development and has transitioned from a hybrid prototype (manual auth + SQL Server experiments) into a **Supabase-first architecture**.
+GLOSS se encuentra en desarrollo activo.
+Ha evolucionado desde un prototipo híbrido hacia una arquitectura centrada en Supabase.
 
-### ✔ Current progress:
-- Supabase Auth integrated
-- Database migrations initialized (001 executed)
-- Row Level Security (RLS) enabled
-- Git repository cleaned from node_modules tracking
-- Project structure being normalized for SaaS scalability
+### ✔ Progreso actual
+- Autenticación con Supabase integrada
+- Migraciones de base de datos inicializadas (001)
+- Row Level Security (RLS) habilitado
+- Repositorio limpio (sin node_modules)
+- Estructura en proceso de normalización para SaaS
 
 ---
 
-## ⚙️ TECH STACK
+## ⚙️ Stack Tecnológico
 - React 18
 - Vite
 - Tailwind CSS
@@ -46,86 +48,84 @@ GLOSS is currently in active development and has transitioned from a hybrid prot
 - React (Vite)
 - React Router DOM
 - Context API (Auth layer)
-- TailwindCSS
+- Tailwind CSS
 
 ### Backend / BaaS
 - Supabase
-  - Authentication
-  - PostgreSQL Database
-  - Row Level Security (RLS)
-  - Real-time capabilities
+  - Autenticación (JWT)
+  - PostgreSQL
+  -  Row Level Security (RLS)
+  -  Realtime
 
-### Security Model
-- JWT-based authentication (Supabase Auth)
-- RLS-based authorization
-- User-scoped data access via `auth.uid()`
-- Stateless session management
+### 🔐 Modelo de Seguridad
+  -  Autenticación basada en JWT (Supabase Auth)
+  -  Autorización mediante políticas RLS
+  -  Acceso a datos por usuario (auth.uid())
+  -  Arquitectura stateless (sin sesiones persistentes en servidor)
 
 ---
 
-## 🧱 ARCHITECTURE OVERVIEW
-
-GLOSS follows a **serverless SaaS architecture**:
-- `/src/pages` - Main screens
-- `/src/components` - Reusable components
-- `/src/context` - Global state (AuthContext)
-- `/src/utils` - Helper functions
-- `/public` - PWA manifest and static assets
+## 🧱 Arquitectura del Proyecto
 
 GLOSS-PWA-TEST/
 │
 ├── src/ # React frontend
-├── public/
+│   ├── pages/          # Vistas principales
+│   ├── components/     # Componentes reutilizables
+│   ├── context/        # AuthContext global
+│   ├── utils/          # Funciones auxiliares
+│
+├── public/             # Assets de PWA
 │
 ├── supabase/
-│ ├── migrations/ # database versioning
-│ └── seed.sql
+│   ├── migrations/     # Versionado de DB
+│   └── seed.sql
 │
-├── docs/ # development documentation
-│ ├── completed_tasks.md
-│ ├── auth_migration.md
-│ ├── development_log.md
+├── docs/               # Documentación técnica
+│   ├── completed_tasks.md
+│   ├── auth_migration.md
+│   ├── development_log.md
 │
 ├── .gitignore
 ├── package.json
 ├── package-lock.json
 ├── README.md
-└── .env.example
+└── .env
 
-## 📌 DEVELOPMENT RULES
+## 📌 Reglas de Desarrollo
 
-- No sensitive data in Git (`.env` excluded)
-- No `node_modules` tracked
-- All DB changes must go through `supabase/migrations`
-- All architecture decisions documented in `/docs`
-
----
-
-## 🧠 FUTURE ROADMAP
-
-Planned evolution of GLOSS:
-
-- SaaS real structure (multi-module architecture)
-- Clean AuthContext (React + Supabase abstraction layer)
-- Protected routes system
-- Full RLS policy implementation
-- Profiles system (user identity layer)
-- Dashboard base (analytics + user panel)
-- SENTRY module (behavioral anomaly / data manipulation detection system)
+- No incluir datos sensibles en Git (.env excluido)
+- No versionar node_modules
+- Usar supabase/migrations para cambios en base de datos
+- Documentar decisiones arquitectónicas en /docs
 
 ---
 
-## 🎯 VISION
+## 🧠 ROADMAP
 
-GLOSS aims to become a **secure, modular SaaS foundation** capable of scaling into:
+Evolución planificada de GLOSS:
 
-- analytics systems
-- behavioral tracking tools
-- data integrity monitoring systems
-- user-centric dashboards
+-  Arquitectura SaaS multi-módulo
+-  Refactor de AuthContext (capa limpia React + Supabase)
+-  Sistema de rutas protegidas
+-  Implementación completa de RLS
+-  Sistema de perfiles de usuario
+-  Dashboard base (analítica + panel)
+-  Módulo SENTRY (detección de anomalías y manipulación de datos)
 
 ---
 
-## 📍 STATUS
+## 🎯 Visión
 
-> Early-stage SaaS architecture in active development
+GLOSS apunta a evolucionar hacia una plataforma SaaS completa capaz de integrar:
+
+-  Sistemas de analítica avanzada
+-  Tracking de comportamiento de usuario
+-  Sistemas de integridad de datos
+-  Dashboards centrados en experiencia premium
+
+---
+
+## 📍 Estado del proyecto
+
+> Arquitectura SaaS en etapa temprana de desarrollo activo.
