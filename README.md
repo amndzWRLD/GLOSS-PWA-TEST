@@ -71,3 +71,61 @@ GLOSS follows a **serverless SaaS architecture**:
 - `/src/context` - Global state (AuthContext)
 - `/src/utils` - Helper functions
 - `/public` - PWA manifest and static assets
+
+GLOSS-PWA-TEST/
+│
+├── src/ # React frontend
+├── public/
+│
+├── supabase/
+│ ├── migrations/ # database versioning
+│ └── seed.sql
+│
+├── docs/ # development documentation
+│ ├── completed_tasks.md
+│ ├── auth_migration.md
+│ ├── development_log.md
+│
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── README.md
+└── .env.example
+
+## 📌 DEVELOPMENT RULES
+
+- No sensitive data in Git (`.env` excluded)
+- No `node_modules` tracked
+- All DB changes must go through `supabase/migrations`
+- All architecture decisions documented in `/docs`
+
+---
+
+## 🧠 FUTURE ROADMAP
+
+Planned evolution of GLOSS:
+
+- SaaS real structure (multi-module architecture)
+- Clean AuthContext (React + Supabase abstraction layer)
+- Protected routes system
+- Full RLS policy implementation
+- Profiles system (user identity layer)
+- Dashboard base (analytics + user panel)
+- SENTRY module (behavioral anomaly / data manipulation detection system)
+
+---
+
+## 🎯 VISION
+
+GLOSS aims to become a **secure, modular SaaS foundation** capable of scaling into:
+
+- analytics systems
+- behavioral tracking tools
+- data integrity monitoring systems
+- user-centric dashboards
+
+---
+
+## 📍 STATUS
+
+> Early-stage SaaS architecture in active development
