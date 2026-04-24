@@ -10,18 +10,55 @@ export const AuthProvider = ({ children }) => {
   const [session, setSession] = useState(null)
   const [loading, setLoading] = useState(true)
 
+  const fetchProfile = async (userId) => {
+    const { data, error } = await supabase.from('profiles').select('*').eq('id', userId).single()
+    return { data, error }
+  }
+
+  const updateUserFromSession = async (session) => {
+    if (session?.user) {
+      try {
+        let { data: profile, error } = await fetchProfile(session.user.id)
+        if (error && error.code === 'PGRST116') { // Profile not found
+          const { error: insertError } = await supabase.from('profiles').insert({
+            id: session.user.id,
+            email: session.user.email
+          })
+          if (insertError) {
+            console.error('Failed to insert profile:', insertError)
+          } else {
+            const { data: newProfile, error: fetchError } = await fetchProfile(session.user.id)
+            if (fetchError) {
+              console.error('Failed to fetch profile after insert:', fetchError)
+            } else {
+              profile = newProfile
+            }
+          }
+        } else if (error) {
+          console.error('Failed to fetch profile:', error)
+        }
+        setUser(profile || null)
+      } catch (err) {
+        console.error('Error in profile handling:', err)
+        setUser(null)
+      }
+    } else {
+      setUser(null)
+    }
+  }
+
   useEffect(() => {
     // Obtener sesión activa al montar
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session)
-      setUser(session?.user ?? null)
+      await updateUserFromSession(session)
       setLoading(false)
     })
 
     // Escuchar cambios de auth en tiempo real
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setSession(session)
-      setUser(session?.user ?? null)
+      await updateUserFromSession(session)
       setLoading(false)
     })
 
@@ -37,7 +74,9 @@ export const AuthProvider = ({ children }) => {
       return { data, error }
     },
     signUp: async (email, password) => {
+      console.log('SIGNUP CALL:', { email, password })
       const { data, error } = await supabase.auth.signUp({ email, password })
+      console.log('SUPABASE RESPONSE:', { data, error })
       return { data, error }
     },
     signOut: async () => {

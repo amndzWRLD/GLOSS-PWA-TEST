@@ -7,7 +7,9 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Profile from './pages/Profile'
 import ProviderDashboard from './pages/ProviderDashboard'
+import ResetPassword from './pages/ResetPassword'
 import Splash from './pages/Splash'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   return (
@@ -15,13 +17,49 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Splash />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/detailer/:id" element={<ServiceDetail />} />
-          <Route path="/booking/:id" element={<Booking />} />
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/detailer/:id"
+            element={
+              <ProtectedRoute>
+                <ServiceDetail />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/booking/:id"
+            element={
+              <ProtectedRoute>
+                <Booking />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/dashboard" element={<ProviderDashboard />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <ProviderDashboard />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

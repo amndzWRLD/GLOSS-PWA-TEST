@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import { useAuth } from '../context/AuthContext'
 import BottomNav from '../components/BottomNav'
 import CardService from '../components/CardService'
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('Todos')
+  const { user } = useAuth()
+  const displayName = user?.email?.split('@')[0] || 'Carlos'
   const categories = ['Todos', 'Lavado', 'Full Detail', 'Pulido', 'Ceramic']
 
   // Mock data
@@ -27,7 +30,7 @@ export default function Home() {
           <div>
             <p className="text-gray-400 text-sm">SAN JOSÉ, CR</p>
             <h1 className="text-2xl font-bold">
-              Hola, <span className="text-gloss-yellow">Carlos</span> 👋
+              Hola, <span className="text-gloss-yellow">{displayName}</span> 👋
             </h1>
           </div>
           <div className="w-10 h-10 bg-gloss-yellow rounded-full flex items-center justify-center text-black font-bold">
