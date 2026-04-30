@@ -26,7 +26,7 @@ function App() {
             }
           />
           <Route
-            path="/detailer/:id"
+            path="/service/:id"
             element={
               <ProtectedRoute>
                 <ServiceDetail />

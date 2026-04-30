@@ -51,15 +51,17 @@ export const AuthProvider = ({ children }) => {
     // Obtener sesión activa al montar
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session)
-      await updateUserFromSession(session)
+      // Set loading to false immediately after session is available
       setLoading(false)
+      // Fetch profile in background without blocking
+      await updateUserFromSession(session)
     })
 
     // Escuchar cambios de auth en tiempo real
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setSession(session)
-      await updateUserFromSession(session)
       setLoading(false)
+      await updateUserFromSession(session)
     })
 
     return () => subscription.unsubscribe()

@@ -12,3 +12,7 @@
   }
 }
 
+/* Leaflet z-index fix */
+.leaflet-pane { z-index: 1; }
+.leaflet-top, .leaflet-bottom { z-index: 2; }
+.leaflet-control { z-index: 2; }

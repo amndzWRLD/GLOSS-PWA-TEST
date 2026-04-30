@@ -6,7 +6,7 @@ export default function CardService({ detailer }) {
 
   return (
     <div 
-      onClick={() => navigate(`/detailer/${detailer.id}`)}
+      onClick={() => navigate(`/service/${detailer.id}`)}
       className="bg-dark-card border border-dark-border rounded-2xl p-4 cursor-pointer hover:border-gloss-yellow transition-all"
     >
       <div className="flex justify-between items-start mb-2">

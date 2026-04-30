@@ -1,27 +1,27 @@
-import { useState } from 'react'
+import { useState, Suspense, lazy } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import BottomNav from '../components/BottomNav'
 import CardService from '../components/CardService'
 
+const MapView = lazy(() => import('../components/MapView'))
+
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('Todos')
   const { user } = useAuth()
+  const navigate = useNavigate()
   const displayName = user?.email?.split('@')[0] || 'Carlos'
   const categories = ['Todos', 'Lavado', 'Full Detail', 'Pulido', 'Ceramic']
 
   // Mock data
-  const detailers = [
-    {
-      id: 1,
-      name: 'DetailPro CR',
-      rating: 4.9,
-      location: 'Escazú',
-      distance: '2km',
-      category: 'DETAILING',
-      badge: 'TOP',
-      priceFrom: '₡15,000'
-    }
+  const DETAILERS_MOCK = [
+    { id: 1, name: 'DetailPro CR', type: 'Ceramic · PPF', rating: 4.9, reviews: 128, lat: 9.9320, lng: -84.0800 },
+    { id: 2, name: 'Shine Masters', type: 'Pulido · Corrección', rating: 4.7, reviews: 84, lat: 9.9250, lng: -84.0950 },
+    { id: 3, name: 'Auto Glow', type: 'Tintado · Ceramic', rating: 4.8, reviews: 97, lat: 9.9180, lng: -84.0850 },
+    { id: 4, name: 'DetailZone', type: 'Lavado · PPF', rating: 4.6, reviews: 52, lat: 9.9350, lng: -84.1000 },
   ]
+
+  const detailers = DETAILERS_MOCK
 
   return (
     <div className="min-h-screen bg-dark-bg pb-20">
@@ -64,6 +64,19 @@ export default function Home() {
               </button>
             ))}
           </div>
+        </div>
+
+        {/* MAPA */}
+        <div style={{ height: '320px', margin: '16px 0', borderRadius: '12px', overflow: 'hidden', border: '1px solid #222' }}>
+          <Suspense fallback={<div style={{ width: '100%', height: '100%', backgroundColor: '#0a0a0a', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#666' }}>Cargando mapa...</div>}>
+            <MapView
+              detailers={DETAILERS_MOCK}
+              onSelect={(detailer) => {
+                console.log('Detailer seleccionado:', detailer)
+                navigate(`/service/${detailer.id}`)
+              }}
+            />
+          </Suspense>
         </div>
 
         <div>
