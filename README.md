@@ -1,5 +1,20 @@
 # GLOSS - Car Detailing Marketplace PWA
+Plataforma SaaS + Marketplace + PWA para detailers automotrices independientes y dueños de vehículos de gama media-alta.
 
+GLOSS no es simplemente una marketplace PWA para detailers automotrices.
+
+La esencia del proyecto es convertirse en una plataforma tecnológica moderna orientada a:
+
+- SecDevOps
+- Arquitectura SaaS empresarial
+- Marketplace systems
+- Data-driven UX
+- Behavioral economics aplicado a retención y confianza
+- Platform engineering
+- Escalabilidad modular
+- Seguridad empresarial
+- Analytics e insights inteligentes
+--
 ## Setup
 
 1. Install dependencies:
@@ -13,17 +28,27 @@ npm install
 ```bash
 npm run dev
 ```
+--
 
-## Stack
-- React 18
-- Vite
-- Tailwind CSS
-- React Router
-- Supabase (auth, database, storage)
+## Filosofía de Ingeniería
 
-## Project Structure
-- `/src/pages` - Main screens
-- `/src/components` - Reusable components
-- `/src/context` - Global state (AuthContext)
-- `/src/utils` - Helper functions
-- `/public` - PWA manifest and static assets
+### Architecture-First
+Dominios modulares sobre monolitos. 
+Servicios desacoplados litos para futuras integraciones de IA y evolución de plataforma escalable. 
+
+### Security-First
+Estrategia de Deep RLS y JWT integrada desde el Día 1.
+Implementación de aislamiento multi-tenant mediante políticas de PostgreSQL (RLS), garantizando que un Detailer jamás acceda a métricas o datos operativos de otro.
+
+### Systems-First
+La plataforma sigue la visión de un sistema distribuido:
+- analytics
+- observability
+- event tracking
+- authentication
+- infrastructure thinking
+- scalable domain separation
+
+--
+
+
