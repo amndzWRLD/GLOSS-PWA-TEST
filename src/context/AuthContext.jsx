@@ -77,7 +77,18 @@ export const AuthProvider = ({ children }) => {
       }
       try {
         const { data, error } = await supabase.auth.signInWithPassword({ email, password })
-        return { data, error }
+        if (error) {
+          const serverError = error.status && Number(error.status) >= 500
+          return {
+            data: null,
+            error: {
+              message: serverError
+                ? 'El servidor de autenticación está temporalmente no disponible (503). Intenta de nuevo en unos minutos.'
+                : error.message
+            }
+          }
+        }
+        return { data, error: null }
       } catch (_err) {
         return { data: null, error: { message: 'No se pudo conectar al servidor de autenticación. Revisa tu conexión o la URL de Supabase.' } }
       }
