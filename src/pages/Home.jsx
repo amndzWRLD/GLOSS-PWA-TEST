@@ -1,94 +1,32 @@
-import { useState, Suspense, lazy } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
+import { useMemo, useState } from 'react'
 import BottomNav from '../components/BottomNav'
-import CardService from '../components/CardService'
-
-const MapView = lazy(() => import('../components/MapView'))
+import MapShell from '../features/map/components/MapShell'
+import DiscoveryBar from '../features/discovery/components/DiscoveryBar'
+import { providers, categoryOptions, statusOptions, pricingOptions } from '../data/providers'
 
 export default function Home() {
-  const [selectedCategory, setSelectedCategory] = useState('Todos')
-  const { user } = useAuth()
-  const navigate = useNavigate()
-  const displayName = user?.email?.split('@')[0] || 'Carlos'
-  const categories = ['Todos', 'Lavado', 'Full Detail', 'Pulido', 'Ceramic']
+  const [selectedProvider, setSelectedProvider] = useState(null)
+  const [filters, setFilters] = useState({ query: '', categories: [], statuses: [], pricingTiers: [] })
 
-  // Mock data
-  const DETAILERS_MOCK = [
-    { id: 1, name: 'DetailPro CR', type: 'Ceramic · PPF', rating: 4.9, reviews: 128, lat: 9.9320, lng: -84.0800 },
-    { id: 2, name: 'Shine Masters', type: 'Pulido · Corrección', rating: 4.7, reviews: 84, lat: 9.9250, lng: -84.0950 },
-    { id: 3, name: 'Auto Glow', type: 'Tintado · Ceramic', rating: 4.8, reviews: 97, lat: 9.9180, lng: -84.0850 },
-    { id: 4, name: 'DetailZone', type: 'Lavado · PPF', rating: 4.6, reviews: 52, lat: 9.9350, lng: -84.1000 },
-  ]
-
-  const detailers = DETAILERS_MOCK
+  const filtered = useMemo(() => providers.filter((p) => {
+    const queryOk = !filters.query || p.name.toLowerCase().includes(filters.query.toLowerCase()) || p.serviceCategories.join(' ').toLowerCase().includes(filters.query.toLowerCase())
+    const catOk = filters.categories.length === 0 || filters.categories.includes('All') || filters.categories.some((c) => p.serviceCategories.includes(c))
+    const statusOk = filters.statuses.length === 0 || filters.statuses.includes(p.status)
+    const priceOk = filters.pricingTiers.length === 0 || filters.pricingTiers.includes(p.pricingTier)
+    return queryOk && catOk && statusOk && priceOk
+  }), [filters])
 
   return (
-    <div className="min-h-screen bg-dark-bg pb-20">
-      <div className="p-4">
-        <div className="flex justify-between items-center mb-6">
-          <div>
-            <p className="text-gray-400 text-sm">SAN JOSÉ, CR</p>
-            <h1 className="text-2xl font-bold">
-              Hola, <span className="text-gloss-yellow">{displayName}</span> 👋
-            </h1>
-          </div>
-          <div className="w-10 h-10 bg-gloss-yellow rounded-full flex items-center justify-center text-black font-bold">
-            CR
-          </div>
-        </div>
-
-        <div className="relative mb-6">
-          <input
-            type="text"
-            placeholder="Buscar detailers o servicios..."
-            className="w-full bg-dark-card border border-dark-border rounded-xl px-4 py-3 pl-10 focus:outline-none focus:border-gloss-yellow"
-          />
-          <span className="absolute left-3 top-3 text-xl">🔍</span>
-        </div>
-
-        <div className="mb-6">
-          <h2 className="text-sm font-bold mb-3 uppercase tracking-wider">Categorías</h2>
-          <div className="flex gap-2 overflow-x-auto pb-2">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full whitespace-nowrap transition-all ${
-                  selectedCategory === cat
-                    ? 'bg-gloss-yellow text-black font-bold'
-                    : 'bg-dark-card border border-dark-border text-gray-400'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* MAPA */}
-        <div style={{ height: '320px', margin: '16px 0', borderRadius: '12px', overflow: 'hidden', border: '1px solid #222' }}>
-          <Suspense fallback={<div style={{ width: '100%', height: '100%', backgroundColor: '#0a0a0a', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#666' }}>Cargando mapa...</div>}>
-            <MapView
-              detailers={DETAILERS_MOCK}
-              onSelect={(detailer) => {
-                console.log('Detailer seleccionado:', detailer)
-                navigate(`/service/${detailer.id}`)
-              }}
-            />
-          </Suspense>
-        </div>
-
-        <div>
-          <h2 className="text-sm font-bold mb-3 uppercase tracking-wider">Cerca de ti</h2>
-          <div className="space-y-3">
-            {detailers.map(detailer => (
-              <CardService key={detailer.id} detailer={detailer} />
-            ))}
-          </div>
+    <div className="min-h-screen bg-black text-white p-3 pb-24">
+      <div className="relative">
+        <DiscoveryBar filters={filters} setFilters={setFilters} categories={categoryOptions} statuses={statusOptions} pricing={pricingOptions} />
+        <MapShell providers={filtered} selectedProvider={selectedProvider} onSelect={setSelectedProvider} onClose={() => setSelectedProvider(null)} />
+        <div className="absolute bottom-4 left-4 right-4 z-20 rounded-2xl border border-white/10 bg-zinc-950/75 backdrop-blur p-3 text-xs text-zinc-300 flex justify-between">
+          <span>Active providers: <strong className="text-white">{filtered.filter((p) => p.status === 'available').length}</strong></span>
+          <span>Throughput: <strong className="text-white">41 req/hr</strong></span>
+          <span className="text-emerald-400">● Platform Healthy</span>
         </div>
       </div>
-
       <BottomNav />
     </div>
   )
