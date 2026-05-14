@@ -100,5 +100,75 @@ Supabase services currently manage:
 - tenant isolation
 - storage buckets
 
+---
+
+# Metodología Desarrollo por Capas
+La plataforma está siendo desarrollada progresivamente en capas arquitectónicas.
+
+---
+
+## Layer 1 — Foundation
+
+Core environment y estándares de ingeniería. Configuración del entorno, monorepo, design tokens y contratos compartidos.
+
+Incluye:
+- environment setup
+- monorepo structure
+- design tokens
+- shared contracts
+- routing foundations
+- frontend architecture
+
+---
+
+## Layer 2 — Security & Trust
+
+El núcleo de protección. Auth de Supabase, matriz de permisos y políticas de RLS.
+
+Includes:
+- Supabase autenticación
+- matriz de permisos
+- tenant isolation
+- PostgreSQL Row Level Security (RLS)
+- secure session handling
+
+---
+
+## Layer 3 — Data & Observability
+
+El sistema nervioso. Analytics, tracking de eventos y monitoreo de performance.
+
+Includes:
+- analytics
+- event tracking
+- monitoring
+- performance metrics
+- observability pipelines
+
+---
+
+## Layer 4 — Core Marketplace Engine
+
+Operational marketplace systems. Motor operativo. Discovery (Map-first), bookings y lógica de matching.
+
+Includes:
+- map-first discovery
+- provider matching
+- booking systems
+- operational workflows
+- marketplace logic
+
+---
+
+## Layer 5 — Experience Systems
+
+UX Premium, microinteracciones y economía conductual (retención).
+
+Includes:
+- premium interactions
+- microinteractions
+- behavioral economics
+- user engagement systems
+- retention-oriented UX
 
 
