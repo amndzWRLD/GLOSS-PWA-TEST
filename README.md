@@ -69,5 +69,36 @@ Enfoque actual:
 - observability pipelines
 - product-oriented engineering
 
+---
+
+# Tech Stack
+
+## Frontend
+- React 18
+- Vite
+- Tailwind CSS
+- React Router
+
+## Backend & Infrastructure
+- Supabase
+  - Autenticación
+  - PostgreSQL Base de Datos
+  - Row Level Security (RLS)
+  - Storage
+
+## Arquitectura
+- Multi-tenant SaaS
+- Progressive Web App (PWA)
+
+## Current Database Scope
+
+Supabase services currently manage:
+
+- users
+- providers
+- authentication
+- tenant isolation
+- storage buckets
+
 
 
