@@ -8,6 +8,7 @@ export default function Login() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
   const { user, signIn } = useAuth()
   const navigate = useNavigate()
 
@@ -21,12 +22,20 @@ export default function Login() {
     e.preventDefault()
     setError('')
     setLoading(true)
-    const { error } = await signIn(email, password)
-    setLoading(false)
-    if (error) {
-      setError(error.message)
-    } else {
-      navigate('/home')
+
+    const timeoutPromise = new Promise((resolve) => {
+      setTimeout(() => resolve({ error: { message: 'Tiempo de espera agotado. Verifica tu conexión o el estado de Supabase.' } }), 12000)
+    })
+
+    try {
+      const result = await Promise.race([signIn(email, password), timeoutPromise])
+      if (result?.error) {
+        setError(result.error.message)
+      } else {
+        navigate('/home')
+      }
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -45,13 +54,22 @@ export default function Login() {
           onChange={(e) => setEmail(e.target.value)}
           className="w-full bg-dark-card border border-dark-border rounded-xl px-4 py-3 focus:outline-none focus:border-gloss-yellow"
         />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full bg-dark-card border border-dark-border rounded-xl px-4 py-3 focus:outline-none focus:border-gloss-yellow"
-        />
+        <div className="relative">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full bg-dark-card border border-dark-border rounded-xl px-4 py-3 pr-20 focus:outline-none focus:border-gloss-yellow"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((v) => !v)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-zinc-300"
+          >
+            {showPassword ? 'Ocultar' : 'Mostrar'}
+          </button>
+        </div>
         <Button type="submit" className="w-full" disabled={loading}>
           {loading ? 'ENTRANDO...' : 'INICIAR SESIÓN'}
         </Button>
