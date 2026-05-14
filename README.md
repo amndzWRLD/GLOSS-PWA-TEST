@@ -49,6 +49,25 @@ La plataforma sigue la visión de un sistema distribuido:
 - infrastructure thinking
 - scalable domain separation
 
---
+---
+
+## Developer Profile
+
+Junior Fullstack Developer con interés en:
+- Startups
+- Cloud-native systems
+- SecDevOps
+- Enterprise SaaS engineering
+- Platform engineering
+- Analytics systems
+- Behavioral economics applied to digital products
+
+Enfoque actual:
+- sistemas escalables
+- arquitectura SaaS multi-tenant 
+- diseño de base de datos seguras
+- observability pipelines
+- product-oriented engineering
+
 
 
