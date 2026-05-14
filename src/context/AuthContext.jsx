@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { supabase } from '../utils/supabase'
+import { supabase, hasSupabaseConfig } from '../utils/supabase'
 
 const AuthContext = createContext({})
 
@@ -72,8 +72,15 @@ export const AuthProvider = ({ children }) => {
     session,
     loading,
     signIn: async (email, password) => {
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password })
-      return { data, error }
+      if (!hasSupabaseConfig) {
+        return { data: null, error: { message: 'Configuración de autenticación incompleta. Verifica variables VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY.' } }
+      }
+      try {
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+        return { data, error }
+      } catch (_err) {
+        return { data: null, error: { message: 'No se pudo conectar al servidor de autenticación. Revisa tu conexión o la URL de Supabase.' } }
+      }
     },
     signUp: async (email, password) => {
       console.log('SIGNUP CALL:', { email, password })
