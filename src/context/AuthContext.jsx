@@ -10,6 +10,12 @@ export const AuthProvider = ({ children }) => {
   const [session, setSession] = useState(null)
   const [loading, setLoading] = useState(true)
 
+  const getFallbackUser = (authUser) => ({
+    id: authUser.id,
+    email: authUser.email,
+    role: authUser.app_metadata?.role || 'customer'
+  })
+
   const fetchProfile = async (userId) => {
     const { data, error } = await supabase.from('profiles').select('*').eq('id', userId).single()
     return { data, error }
@@ -17,17 +23,22 @@ export const AuthProvider = ({ children }) => {
 
   const updateUserFromSession = async (session) => {
     if (session?.user) {
+      const authUser = session.user
+      const fallbackUser = getFallbackUser(authUser)
+
+      setUser(fallbackUser)
+
       try {
-        let { data: profile, error } = await fetchProfile(session.user.id)
+        let { data: profile, error } = await fetchProfile(authUser.id)
         if (error && error.code === 'PGRST116') { // Profile not found
           const { error: insertError } = await supabase.from('profiles').insert({
-            id: session.user.id,
-            email: session.user.email
+            id: authUser.id,
+            email: authUser.email
           })
           if (insertError) {
             console.error('Failed to insert profile:', insertError)
           } else {
-            const { data: newProfile, error: fetchError } = await fetchProfile(session.user.id)
+            const { data: newProfile, error: fetchError } = await fetchProfile(authUser.id)
             if (fetchError) {
               console.error('Failed to fetch profile after insert:', fetchError)
             } else {
@@ -37,10 +48,10 @@ export const AuthProvider = ({ children }) => {
         } else if (error) {
           console.error('Failed to fetch profile:', error)
         }
-        setUser(profile || null)
+        setUser(profile || fallbackUser)
       } catch (err) {
         console.error('Error in profile handling:', err)
-        setUser(null)
+        setUser(fallbackUser)
       }
     } else {
       setUser(null)
@@ -51,17 +62,22 @@ export const AuthProvider = ({ children }) => {
     // Obtener sesión activa al montar
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session)
-      // Set loading to false immediately after session is available
-      setLoading(false)
-      // Fetch profile in background without blocking
       await updateUserFromSession(session)
+      setLoading(false)
     })
 
     // Escuchar cambios de auth en tiempo real
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
+      if (session?.user) {
+        setUser(getFallbackUser(session.user))
+        setTimeout(() => {
+          updateUserFromSession(session)
+        }, 0)
+      } else {
+        setUser(null)
+      }
       setLoading(false)
-      await updateUserFromSession(session)
     })
 
     return () => subscription.unsubscribe()
@@ -88,6 +104,8 @@ export const AuthProvider = ({ children }) => {
             }
           }
         }
+        setSession(data.session)
+        await updateUserFromSession(data.session)
         return { data, error: null }
       } catch (_err) {
         return { data: null, error: { message: 'No se pudo conectar al servidor de autenticación. Revisa tu conexión o la URL de Supabase.' } }
