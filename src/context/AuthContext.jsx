@@ -59,6 +59,11 @@ export const AuthProvider = ({ children }) => {
   }
 
   useEffect(() => {
+    if (!hasSupabaseConfig) {
+      setLoading(false)
+      return
+    }
+
     // Obtener sesión activa al montar
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session)
