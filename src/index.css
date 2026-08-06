@@ -3,11 +3,24 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-dark-bg text-white font-body antialiased;
+  html {
+    @apply transition-colors duration-300;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  body {
+    @apply bg-white text-black font-body antialiased transition-colors duration-300;
+  }
+
+  html.dark body {
+    @apply bg-dark-bg text-white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-display;
   }
 }
