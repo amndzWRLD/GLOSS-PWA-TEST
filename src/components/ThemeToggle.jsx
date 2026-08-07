@@ -1,7 +1,9 @@
 import { Moon, Sun } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { useTheme } from "../context/ThemeContext";
 
 export default function ThemeToggle() {
+  const { t } = useTranslation();
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -26,12 +28,12 @@ export default function ThemeToggle() {
       {theme === "dark" ? (
         <>
           <Moon size={18} />
-          <span>Dark</span>
+          <span>{t('theme.dark')}</span>
         </>
       ) : (
         <>
           <Sun size={18} />
-          <span>Light</span>
+          <span>{t('theme.light')}</span>
         </>
       )}
     </button>

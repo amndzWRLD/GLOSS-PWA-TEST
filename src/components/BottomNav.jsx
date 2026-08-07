@@ -1,4 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const MapIcon = ({ size = 22 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -36,19 +37,20 @@ const ProfileIcon = ({ size = 22 }) => (
   </svg>
 )
 
-const navItems = [
-  { icon: MapIcon,       path: '/home',      label: 'Explore'  },
-  { icon: BookingIcon,   path: '/bookings',  label: 'Bookings' },
-  { icon: AnalyticsIcon, path: '/dashboard', label: 'Panel'    },
-  { icon: ProfileIcon,   path: '/profile',   label: 'Profile'  },
-]
-
 export default function BottomNav() {
+  const { t } = useTranslation('common')
   const navigate  = useNavigate()
   const location  = useLocation()
 
+  const navItems = [
+    { icon: MapIcon,       path: '/home',      label: t('bottomNav.explore') },
+    { icon: BookingIcon,   path: '/bookings',  label: t('bottomNav.bookings') },
+    { icon: AnalyticsIcon, path: '/dashboard', label: t('bottomNav.panel') },
+    { icon: ProfileIcon,   path: '/profile',   label: t('bottomNav.profile') },
+  ]
+
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/[0.06] bg-zinc-950/90 backdrop-blur-xl">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t bg-white/90 border-gloss-lightBorder backdrop-blur-xl dark:bg-gloss-darkBg/90 dark:border-gloss-darkBorder">
       <div className="flex justify-around items-center py-3 px-2">
         {navItems.map(({ icon: Icon, path, label }) => {
           const active = location.pathname === path
@@ -58,16 +60,10 @@ export default function BottomNav() {
               onClick={() => navigate(path)}
               className="flex flex-col items-center gap-1 group"
             >
-              <span
-                className="transition-colors duration-150"
-                style={{ color: active ? '#d9f80c' : 'rgba(255,255,255,0.35)' }}
-              >
+              <span className={`transition-colors duration-200 ${active ? 'text-gloss-yellow' : 'text-gray-500 dark:text-zinc-500'}`}>
                 <Icon size={22} />
               </span>
-              <span
-                className="text-[10px] font-mono tracking-wide transition-colors duration-150"
-                style={{ color: active ? '#d9f80c' : 'rgba(255,255,255,0.25)' }}
-              >
+              <span className={`text-[10px] font-mono tracking-wide transition-colors duration-200 ${active ? 'text-gloss-yellow' : 'text-gray-500 dark:text-zinc-500'}`}>
                 {label}
               </span>
             </button>

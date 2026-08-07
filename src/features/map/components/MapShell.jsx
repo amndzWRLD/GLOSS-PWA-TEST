@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { MapContainer, TileLayer, CircleMarker, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
+import { useTheme } from '../../../context/ThemeContext'
 import ProviderPopup from './ProviderPopup'
 
 const GAM_CENTER = [9.9281, -84.0907]
@@ -16,8 +17,10 @@ function MapInvalidator() {
 }
 
 export default function MapShell({ providers, selectedProvider, onSelect, onClose }) {
+  const { theme } = useTheme()
+
   return (
-    <div className="relative h-[75vh] md:h-[calc(100vh-2rem)] rounded-3xl border border-white/10">
+    <div className={`relative h-[75vh] md:h-[calc(100vh-2rem)] rounded-3xl border ${theme === 'dark' ? 'border-gloss-darkBorder' : 'border-gloss-lightBorder'}`}>
       <div className="absolute inset-0 rounded-3xl overflow-hidden">
         <MapContainer
           center={GAM_CENTER}
@@ -28,8 +31,8 @@ export default function MapShell({ providers, selectedProvider, onSelect, onClos
         >
           <MapInvalidator />
           <TileLayer
-            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-            attribution="© OpenStreetMap contributors © CARTO"
+            url={theme === 'dark' ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png' : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}
+            attribution={theme === 'dark' ? '© OpenStreetMap contributors © CARTO' : '© OpenStreetMap contributors'}
             subdomains="abcd"
             maxZoom={19}
           />

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../context/AuthContext'
 import Button from '../components/Button'
 
@@ -10,6 +11,7 @@ export default function Signup() {
   const [loading, setLoading] = useState(false)
   const { user, signUp } = useAuth()
   const navigate = useNavigate()
+  const { t } = useTranslation('common')
 
   useEffect(() => {
     if (user) {
@@ -31,35 +33,35 @@ export default function Signup() {
   }
 
   return (
-    <div className="min-h-screen bg-dark-bg flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-gloss-lightBg flex flex-col items-center justify-center p-4 dark:bg-gloss-darkBg">
       <h1 className="text-5xl font-bold mb-2">
         GL<span className="text-gloss-yellow">O</span>SS
       </h1>
-      <p className="text-gray-400 mb-8">Crea tu cuenta</p>
+      <p className="text-gray-500 mb-8 dark:text-zinc-400">{t('auth.signupSubtitle')}</p>
 
       <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
         <input
           type="email"
-          placeholder="Email"
+          placeholder={t('auth.email')}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full bg-dark-card border border-dark-border rounded-xl px-4 py-3 focus:outline-none focus:border-gloss-yellow"
+          className="w-full bg-gloss-lightCard border border-gloss-lightBorder rounded-xl px-4 py-3 focus:outline-none focus:border-gloss-yellow dark:bg-gloss-darkCard dark:border-gloss-darkBorder"
         />
         <input
           type="password"
-          placeholder="Contraseña"
+          placeholder={t('auth.password')}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full bg-dark-card border border-dark-border rounded-xl px-4 py-3 focus:outline-none focus:border-gloss-yellow"
+          className="w-full bg-gloss-lightCard border border-gloss-lightBorder rounded-xl px-4 py-3 focus:outline-none focus:border-gloss-yellow dark:bg-gloss-darkCard dark:border-gloss-darkBorder"
         />
         <Button type="submit" className="w-full" disabled={loading}>
-          {loading ? 'REGISTRANDO...' : 'REGISTRARSE'}
+          {loading ? t('auth.signingUp') : t('auth.signUpButton')}
         </Button>
         {error && <p className="text-red-400 text-sm text-center">{error}</p>}
-        <p className="text-center text-gray-400 text-sm">
-          ¿Ya tienes cuenta?{' '}
+        <p className="text-center text-gray-500 text-sm dark:text-zinc-400">
+          {t('auth.haveAccount')}{' '}
           <button onClick={() => navigate('/login')} className="text-gloss-yellow">
-            Inicia sesión
+            {t('auth.loginLink')}
           </button>
         </p>
       </form>

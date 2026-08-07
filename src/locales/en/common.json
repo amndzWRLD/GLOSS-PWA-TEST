@@ -1,0 +1,238 @@
+{
+  "common": {
+    "loading": "Loading..."
+  },
+  "home": {
+    "activeProviders": "Active providers",
+    "throughput": "Throughput",
+    "throughputValue": "41 req/hr",
+    "platformHealthy": "Platform healthy"
+  },
+  "discovery": {
+    "searchPlaceholder": "Search businesses, categories, or areas",
+    "all": "All",
+    "wash": "Wash",
+    "interior": "Interior",
+    "fullDetail": "Full Detail",
+    "ceramic": "Ceramic",
+    "ppf": "PPF",
+    "polish": "Polish",
+    "available": "Available",
+    "busy": "Busy",
+    "offline": "Offline"
+  },
+  "bottomNav": {
+    "explore": "Explore",
+    "bookings": "Bookings",
+    "panel": "Dashboard",
+    "profile": "Profile"
+  },
+  "providerPopup": {
+    "rating": "Rating",
+    "completed": "Completed",
+    "tier": "Tier",
+    "eta": "ETA",
+    "bookNow": "Book now",
+    "viewProfile": "View profile"
+  },
+  "auth": {
+    "timeout": "Request timed out. Please verify your connection or Supabase status.",
+    "loginSubtitle": "Sign in to continue",
+    "email": "Email",
+    "password": "Password",
+    "hidePassword": "Hide",
+    "showPassword": "Show",
+    "loggingIn": "SIGNING IN...",
+    "login": "SIGN IN",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign up",
+    "signupSubtitle": "Create your account",
+    "signingUp": "SIGNING UP...",
+    "signUpButton": "SIGN UP",
+    "haveAccount": "Already have an account?",
+    "loginLink": "Log in",
+    "reset": {
+      "requiredFields": "Please complete both fields",
+      "passwordMismatch": "Passwords do not match",
+      "passwordLength": "Password must be at least 6 characters",
+      "updateError": "Could not update the password. Please try again.",
+      "title": "Update your password",
+      "success": "Password updated successfully",
+      "redirecting": "Redirecting to login...",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm password",
+      "updating": "UPDATING...",
+      "submit": "UPDATE PASSWORD",
+      "backToLogin": "Back to login"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "bookings": "My bookings",
+    "paymentMethods": "Payment methods",
+    "settings": "Settings",
+    "signOut": "Sign out"
+  },
+  "splash": {
+    "tagline": "Find Your Detailer"
+  },
+  "theme": {
+    "dark": "Dark",
+    "light": "Light"
+  },
+  "language": {
+    "english": "English",
+    "spanish": "Español"
+  },
+  "cardService": {
+    "top": "TOP"
+  },
+  "booking": {
+    "title": "Schedule appointment",
+    "subtitle": "DetailPro CR • Full Detail Interior",
+    "date": "Date",
+    "time": "Time",
+    "locationTitle": "Client address",
+    "locationSubtitle": "Escazú • Confirm address",
+    "confirm": "CONFIRM APPOINTMENT",
+    "days": {
+      "mon": "MO",
+      "tue": "TU",
+      "wed": "WE",
+      "thu": "TH",
+      "fri": "FR",
+      "sat": "SA",
+      "sun": "SU"
+    }
+  },
+  "bookings": {
+    "operationsTitle": "Bookings Operations",
+    "headerSubtitle": "Bookings Operations",
+    "newBooking": "+ New booking",
+    "toastCreated": "Booking {{id}} created → visible in Dashboard",
+    "emptyState": "No bookings yet",
+    "modal": {
+      "title": "New Booking",
+      "createButton": "Create booking",
+      "fields": {
+        "customer": "Customer",
+        "vehicle": "Vehicle",
+        "service": "Service",
+        "eta": "ETA",
+        "location": "Location",
+        "payment": "Payment",
+        "status": "Status",
+        "notes": "Notes"
+      },
+      "placeholders": {
+        "customer": "S. Parker",
+        "vehicle": "BMW M4",
+        "eta": "11:40",
+        "location": "Brickell",
+        "notes": "Customer notes, access instructions..."
+      }
+    },
+    "status": {
+      "upcoming": "upcoming",
+      "inProgress": "in progress",
+      "completed": "completed",
+      "canceled": "canceled"
+    },
+    "payment": {
+      "paid": "paid",
+      "pending": "pending",
+      "refunded": "refunded"
+    },
+    "table": {
+      "booking": "Booking",
+      "customer": "Customer",
+      "vehicle": "Vehicle",
+      "service": "Service",
+      "eta": "ETA",
+      "location": "Location",
+      "payment": "Payment",
+      "notes": "Notes",
+      "actions": "Actions",
+      "open": "Open"
+    }
+  },
+  "providerDashboard": {
+    "title": "Provider Operations Platform",
+    "subtitle": "Bookings, trust, availability, payouts, and marketplace observability in one control surface.",
+    "liveBadge": "Live · System nominal"
+  },
+  "serviceDetail": {
+    "verified": "VERIFIED",
+    "stats": {
+      "rating": "Rating",
+      "services": "Services",
+      "experience": "Experience"
+    },
+    "servicesHeading": "Services",
+    "bookButton": "SCHEDULE APPOINTMENT"
+  },
+  "availability": {
+    "title": "Availability Control",
+    "providerStatus": "Provider status",
+    "incomingRequests": "Incoming requests",
+    "serviceRadius": "Service radius",
+    "capacity": "Capacity",
+    "online": "Online",
+    "offline": "Offline",
+    "paused": "Paused",
+    "active": "Active",
+    "workingHours": "{{day}}: {{start}} - {{end}}"
+  },
+  "trust": {
+    "title": "Performance + Trust",
+    "completionRate": "Completion rate",
+    "cancellationRate": "Cancellation rate",
+    "providerLevel": "Provider level",
+    "marketplaceReputation": "Marketplace reputation",
+    "goldOperator": "Gold Operator",
+    "highTrust": "High Trust",
+    "quoteOne": "Outstanding quality and punctuality",
+    "quoteTwo": "Great communication and post-service updates"
+  },
+  "finance": {
+    "title": "Financial Operations",
+    "available": "Available",
+    "pending": "Pending",
+    "nextPayout": "Next payout"
+  },
+  "operations": {
+    "pulseTitle": "Operational Pulse",
+    "marketplaceHealthy": "● Marketplace healthy · 42 req/hr",
+    "kpis": {
+      "activeJobs": "Active jobs",
+      "activeJobsChange": "+2 today",
+      "completed": "Completed",
+      "completedChange": "+11%",
+      "earnings": "Earnings",
+      "earningsChange": "+8.4%",
+      "responseRate": "Response rate",
+      "responseRateChange": "SLA healthy",
+      "trustScore": "Trust score",
+      "trustScoreChange": "Gold tier",
+      "performance": "Performance",
+      "performanceChange": "Top 8%"
+    },
+    "activity": {
+      "newCallback": "New callback request from luxury fleet client",
+      "priorityReassign": "Priority reassign requested for a high-value detail package",
+      "bookingSurge": "Same-day booking surge near Brickell corridor"
+    }
+  },
+  "dashboard": {
+    "earningsSummary": "Earnings summary",
+    "available": "Available",
+    "todayBookings": "Today bookings",
+    "requestThroughput": "Request throughput",
+    "avgLatency": "Avg latency",
+    "ratingSummary": "Rating summary",
+    "quickActions": "Quick actions",
+    "manageServices": "Manage services",
+    "acceptRequests": "Accept requests",
+    "viewAnalytics": "View analytics"
+  }
+}

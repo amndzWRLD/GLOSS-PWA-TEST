@@ -4,7 +4,7 @@ export default function Header({ title, showBack = false }) {
   const navigate = useNavigate()
 
   return (
-    <header className="flex items-center justify-between p-4 border-b border-dark-border">
+    <header className="flex items-center justify-between p-4 border-b border-gloss-lightBorder bg-gloss-lightBg text-gray-900 dark:bg-gloss-darkBg dark:border-gloss-darkBorder dark:text-white">
       {showBack && (
         <button onClick={() => navigate(-1)} className="text-2xl">←</button>
       )}

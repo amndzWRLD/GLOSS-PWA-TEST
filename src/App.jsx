@@ -1,9 +1,10 @@
+import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import Home from './pages/Home'
 import ServiceDetail from './pages/ServiceDetail'
 import Booking from './pages/Booking'
-import Bookings from './pages/Bookings'          // ← ADD
+import Bookings from './pages/Bookings'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Profile from './pages/Profile'
@@ -11,9 +12,18 @@ import ProviderDashboard from './pages/ProviderDashboard'
 import ResetPassword from './pages/ResetPassword'
 import Splash from './pages/Splash'
 import ProtectedRoute from './components/ProtectedRoute'
-import { ThemeProvider } from "./context/ThemeContext";
+import { ThemeProvider } from './context/ThemeContext'
+import i18n from './i18n'
 
 function App() {
+  useEffect(() => {
+    const storedLanguage = typeof window !== 'undefined' ? window.localStorage.getItem('i18nextLng') : null
+
+    if (storedLanguage && storedLanguage !== i18n.resolvedLanguage) {
+      void i18n.changeLanguage(storedLanguage)
+    }
+  }, [])
+
   return (
     <ThemeProvider>
       <AuthProvider>

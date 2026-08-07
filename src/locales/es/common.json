@@ -1,0 +1,238 @@
+{
+  "common": {
+    "loading": "Cargando..."
+  },
+  "home": {
+    "activeProviders": "Proveedores activos",
+    "throughput": "Rendimiento",
+    "throughputValue": "41 req/h",
+    "platformHealthy": "Plataforma saludable"
+  },
+  "discovery": {
+    "searchPlaceholder": "Buscar negocios, categorías o zonas",
+    "all": "Todo",
+    "wash": "Lavado",
+    "interior": "Interior",
+    "fullDetail": "Full Detallado",
+    "ceramic": "Cerámico",
+    "ppf": "PPF",
+    "polish": "Pulido",
+    "available": "Disponible",
+    "busy": "Ocupado",
+    "offline": "Sin conexión"
+  },
+  "bottomNav": {
+    "explore": "Explorar",
+    "bookings": "Reservas",
+    "panel": "Panel",
+    "profile": "Perfil"
+  },
+  "providerPopup": {
+    "rating": "Valoración",
+    "completed": "Completados",
+    "tier": "Nivel",
+    "eta": "ETA",
+    "bookNow": "Reservar ahora",
+    "viewProfile": "Ver perfil"
+  },
+  "auth": {
+    "timeout": "El tiempo de espera expiró. Verifica tu conexión o el estado de Supabase.",
+    "loginSubtitle": "Inicia sesión para continuar",
+    "email": "Correo",
+    "password": "Contraseña",
+    "hidePassword": "Ocultar",
+    "showPassword": "Mostrar",
+    "loggingIn": "ENTRANDO...",
+    "login": "INICIAR SESIÓN",
+    "noAccount": "¿No tienes cuenta?",
+    "signUp": "Regístrate",
+    "signupSubtitle": "Crea tu cuenta",
+    "signingUp": "REGISTRANDO...",
+    "signUpButton": "REGISTRARSE",
+    "haveAccount": "¿Ya tienes cuenta?",
+    "loginLink": "Inicia sesión",
+    "reset": {
+      "requiredFields": "Por favor completa ambos campos",
+      "passwordMismatch": "Las contraseñas no coinciden",
+      "passwordLength": "La contraseña debe tener al menos 6 caracteres",
+      "updateError": "Error al actualizar la contraseña. Intenta de nuevo.",
+      "title": "Actualiza tu contraseña",
+      "success": "Contraseña actualizada exitosamente",
+      "redirecting": "Redirigiendo al login...",
+      "newPassword": "Nueva contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "updating": "ACTUALIZANDO...",
+      "submit": "ACTUALIZAR CONTRASEÑA",
+      "backToLogin": "Volver a login"
+    }
+  },
+  "profile": {
+    "title": "Perfil",
+    "bookings": "Mis reservas",
+    "paymentMethods": "Métodos de pago",
+    "settings": "Configuración",
+    "signOut": "Cerrar sesión"
+  },
+  "splash": {
+    "tagline": "Encuentra tu detailer"
+  },
+  "theme": {
+    "dark": "Oscuro",
+    "light": "Claro"
+  },
+  "language": {
+    "english": "English",
+    "spanish": "Español"
+  },
+  "cardService": {
+    "top": "TOP"
+  },
+  "booking": {
+    "title": "Agendar cita",
+    "subtitle": "DetailPro CR • Full Detail Interior",
+    "date": "Fecha",
+    "time": "Hora",
+    "locationTitle": "Domicilio del cliente",
+    "locationSubtitle": "Escazú • Confirmar dirección",
+    "confirm": "CONFIRMAR CITA",
+    "days": {
+      "mon": "LU",
+      "tue": "MA",
+      "wed": "MI",
+      "thu": "JU",
+      "fri": "VI",
+      "sat": "SA",
+      "sun": "DO"
+    }
+  },
+  "bookings": {
+    "operationsTitle": "Operaciones de reservas",
+    "headerSubtitle": "Operaciones de reservas",
+    "newBooking": "+ Nueva reserva",
+    "toastCreated": "Reserva {{id}} creada → visible en Dashboard",
+    "emptyState": "Sin reservas aún",
+    "modal": {
+      "title": "Nueva reserva",
+      "createButton": "Crear reserva",
+      "fields": {
+        "customer": "Cliente",
+        "vehicle": "Vehículo",
+        "service": "Servicio",
+        "eta": "ETA",
+        "location": "Ubicación",
+        "payment": "Pago",
+        "status": "Estado",
+        "notes": "Notas"
+      },
+      "placeholders": {
+        "customer": "S. Parker",
+        "vehicle": "BMW M4",
+        "eta": "11:40",
+        "location": "Brickell",
+        "notes": "Notas del cliente, instrucciones de acceso..."
+      }
+    },
+    "status": {
+      "upcoming": "próxima",
+      "inProgress": "en progreso",
+      "completed": "completada",
+      "canceled": "cancelada"
+    },
+    "payment": {
+      "paid": "pagada",
+      "pending": "pendiente",
+      "refunded": "reembolsada"
+    },
+    "table": {
+      "booking": "Reserva",
+      "customer": "Cliente",
+      "vehicle": "Vehículo",
+      "service": "Servicio",
+      "eta": "ETA",
+      "location": "Ubicación",
+      "payment": "Pago",
+      "notes": "Notas",
+      "actions": "Acciones",
+      "open": "Abrir"
+    }
+  },
+  "providerDashboard": {
+    "title": "Plataforma de operaciones del proveedor",
+    "subtitle": "Reservas, confianza, disponibilidad, pagos y observabilidad del marketplace en una sola superficie de control.",
+    "liveBadge": "En vivo · Sistema nominal"
+  },
+  "serviceDetail": {
+    "verified": "VERIFICADO",
+    "stats": {
+      "rating": "Valoración",
+      "services": "Servicios",
+      "experience": "Experiencia"
+    },
+    "servicesHeading": "Servicios",
+    "bookButton": "AGENDAR CITA"
+  },
+  "availability": {
+    "title": "Control de disponibilidad",
+    "providerStatus": "Estado del proveedor",
+    "incomingRequests": "Solicitudes entrantes",
+    "serviceRadius": "Radio de servicio",
+    "capacity": "Capacidad",
+    "online": "En línea",
+    "offline": "Sin conexión",
+    "paused": "Pausado",
+    "active": "Activo",
+    "workingHours": "{{day}}: {{start}} - {{end}}"
+  },
+  "trust": {
+    "title": "Rendimiento + Confianza",
+    "completionRate": "Tasa de finalización",
+    "cancellationRate": "Tasa de cancelación",
+    "providerLevel": "Nivel del proveedor",
+    "marketplaceReputation": "Reputación del marketplace",
+    "goldOperator": "Operador Gold",
+    "highTrust": "Alta confianza",
+    "quoteOne": "Calidad y puntualidad sobresalientes",
+    "quoteTwo": "Gran comunicación y actualizaciones post-servicio"
+  },
+  "finance": {
+    "title": "Operaciones financieras",
+    "available": "Disponible",
+    "pending": "Pendiente",
+    "nextPayout": "Próximo pago"
+  },
+  "operations": {
+    "pulseTitle": "Pulso operativo",
+    "marketplaceHealthy": "● Marketplace saludable · 42 req/h",
+    "kpis": {
+      "activeJobs": "Trabajos activos",
+      "activeJobsChange": "+2 hoy",
+      "completed": "Completados",
+      "completedChange": "+11%",
+      "earnings": "Ganancias",
+      "earningsChange": "+8.4%",
+      "responseRate": "Tasa de respuesta",
+      "responseRateChange": "SLA saludable",
+      "trustScore": "Puntaje de confianza",
+      "trustScoreChange": "Nivel Gold",
+      "performance": "Rendimiento",
+      "performanceChange": "Top 8%"
+    },
+    "activity": {
+      "newCallback": "Nueva solicitud de un cliente de flota premium",
+      "priorityReassign": "Reasignación prioritaria solicitada para un paquete de detailing de alto valor",
+      "bookingSurge": "Aumento de reservas el mismo día cerca del corredor de Brickell"
+    }
+  },
+  "dashboard": {
+    "earningsSummary": "Resumen de ganancias",
+    "available": "Disponible",
+    "todayBookings": "Reservas de hoy",
+    "requestThroughput": "Rendimiento de solicitudes",
+    "avgLatency": "Latencia promedio",
+    "ratingSummary": "Resumen de valoración",
+    "quickActions": "Acciones rápidas",
+    "manageServices": "Gestionar servicios",
+    "acceptRequests": "Aceptar solicitudes",
+    "viewAnalytics": "Ver analítica"
+  }
+}

@@ -1,4 +1,7 @@
+import { useTranslation } from 'react-i18next'
+
 export default function DiscoveryBar({ filters, setFilters, categories, statuses, pricing }) {
+  const { t } = useTranslation('common')
   const toggle = (key, value, allValue = null) => {
     if (allValue && value === allValue) return setFilters((prev) => ({ ...prev, [key]: [] }))
     setFilters((prev) => ({
@@ -10,9 +13,9 @@ export default function DiscoveryBar({ filters, setFilters, categories, statuses
   }
 
   return (
-    <div className="absolute top-4 left-4 right-4 z-20 rounded-2xl border border-gray-300
-dark:border-white/[0.08] bg-gray-100/90
-dark:bg-black/70 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] p-4 space-y-3">
+    <div className="absolute top-4 left-4 right-4 z-20 rounded-2xl border border-gloss-lightBorder
+dark:border-gloss-darkBorder bg-gloss-lightCard/90
+dark:bg-gloss-darkCard/70 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] p-4 space-y-3">
       
       {/* Top row: logo + search */}
       <div className="flex items-center gap-3">
@@ -21,15 +24,15 @@ dark:bg-black/70 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] p-4 space-
           GLOSS
         </span>
         <div className="relative flex-1">
-          <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-zinc-400" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
           <input
-            className="w-full bg-white
-dark:bg-zinc-900/80 rounded-xl border border-zinc-700/60 pl-9 pr-3 py-2 text-sm text-gray-900
+            className="w-full bg-gloss-lightCard
+dark:bg-gloss-darkCard rounded-xl border border-gloss-lightBorder dark:border-gloss-darkBorder pl-9 pr-3 py-2 text-sm text-gray-900
 dark:text-white placeholder-gray-500
-dark:placeholder-zinc-500 focus:outline-none focus:border-zinc-500 transition-colors"
-            placeholder="Buscar negocios, categorías o zonas"
+dark:placeholder-zinc-500 focus:outline-none focus:border-gray-400 dark:focus:border-zinc-500 transition-colors"
+            placeholder={t('discovery.searchPlaceholder')}
             value={filters.query}
             onChange={(e) => setFilters((p) => ({ ...p, query: e.target.value }))}
           />
@@ -42,8 +45,8 @@ dark:placeholder-zinc-500 focus:outline-none focus:border-zinc-500 transition-co
           <button key={cat} onClick={() => toggle('categories', cat, 'All')}
             className={`h-7 px-3 rounded-full text-xs border transition-colors duration-150 ${
               filters.categories.includes(cat)
-                ? 'bg-[#d9f80c] text-black border-[#d9f80c]'
-                : 'bg-zinc-900 text-zinc-300 border-zinc-700/60 hover:border-zinc-500'
+                ? 'bg-gloss-yellow text-black border-gloss-yellow'
+                : 'bg-gloss-lightCard border-gloss-lightBorder text-gray-700 hover:border-gray-400 dark:bg-gloss-darkCard dark:border-gloss-darkBorder dark:text-zinc-300 dark:hover:border-zinc-500'
             }`}>
             {cat}
           </button>
@@ -54,8 +57,8 @@ dark:placeholder-zinc-500 focus:outline-none focus:border-zinc-500 transition-co
           <button key={s} onClick={() => toggle('statuses', s)}
             className={`h-7 px-3 rounded-full text-xs border capitalize transition-colors duration-150 ${
               filters.statuses.includes(s)
-                ? 'bg-white text-black border-white'
-                : 'bg-zinc-900 text-zinc-300 border-zinc-700/60 hover:border-zinc-500'
+                ? 'bg-gloss-yellow text-black border-gloss-yellow'
+                : 'bg-gloss-lightCard border-gloss-lightBorder text-gray-700 hover:border-gray-400 dark:bg-gloss-darkCard dark:border-gloss-darkBorder dark:text-zinc-300 dark:hover:border-zinc-500'
             }`}>
             {s}
           </button>
@@ -64,8 +67,8 @@ dark:placeholder-zinc-500 focus:outline-none focus:border-zinc-500 transition-co
           <button key={p} onClick={() => toggle('pricingTiers', p)}
             className={`h-7 px-3 rounded-full text-xs border transition-colors duration-150 ${
               filters.pricingTiers.includes(p)
-                ? 'bg-orange-500 text-black border-orange-400'
-                : 'bg-zinc-900 text-zinc-300 border-zinc-700/60 hover:border-zinc-500'
+                ? 'bg-orange-500 text-black border-orange-500'
+                : 'bg-gloss-lightCard border-gloss-lightBorder text-gray-700 hover:border-gray-400 dark:bg-gloss-darkCard dark:border-gloss-darkBorder dark:text-zinc-300 dark:hover:border-zinc-500'
             }`}>
             {p}
           </button>
